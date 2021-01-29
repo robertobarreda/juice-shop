@@ -9,16 +9,8 @@ const path = require('path')
 const sequelizeNoUpdateAttributes = require('sequelize-noupdate-attributes')
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize('database', 'username', 'password', {
-  dialect: 'sqlite',
-  retry: {
-    match: [
-      /SQLITE_BUSY/
-    ],
-    name: 'query',
-    max: 5
-  },
-  transactionType: 'IMMEDIATE',
-  storage: 'data/juiceshop.sqlite',
+  dialect: 'postgres',
+  url: process.env.DATABASE_URL,
   logging: false
 })
 sequelizeNoUpdateAttributes(sequelize)
